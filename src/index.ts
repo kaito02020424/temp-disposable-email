@@ -13,6 +13,7 @@ let accountId: string;
 export interface GeneratedEmail {
   emailAddress: string;
   accountId: string;
+  password: string;
 }
 export interface MessageContent {
   from: { address: string };
@@ -53,7 +54,7 @@ const generateRandomName = (): string =>
  *
  * @example
  * const email = await generateEmail("customUser");
- * console.log(email); // Outputs: {"emailAddress": "customUser@mail.tm" ,  "accountId": "1234"}
+ * console.log(email); // Outputs: {"emailAddress": "customUser@mail.tm" ,  "accountId": "1234", "password": "randomPassword"}
  */
 export const generateEmail = async (
   emailPrefix?: string
@@ -75,7 +76,7 @@ export const generateEmail = async (
       });
       accountId = accountResponse.id;
       await authenticate(emailAddress, password);
-      return { emailAddress, accountId: accountResponse.id };
+      return { emailAddress, accountId: accountResponse.id, password };
     } catch (error: any) {
       if (error.response?.status === 429) {
         await delay(5 * 1000);
