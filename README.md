@@ -90,6 +90,7 @@ console.log('Message received:', message);
   - `waitInterval`: Interval between polling attempts in milliseconds (default: 2,000ms).
   - `logPolling`: Enable or disable logging of polling attempts (default: false).
   - `deleteAfterRead`: Whether to delete the latest message after reading, helpful for parallel run
+  - `deleteAccount`: Whether to delete the account after this method is executed.
 
 #### Returns
 
@@ -139,6 +140,7 @@ it('[Custom Command] - Sign up - Check email content and subject', () => {
         waitInterval: 1000,
         deleteAfterRead: true,
         logPolling: true,
+        deleteAccount: true,
       }).then((mailbox) => {
         // Assert email subject and content
         expect(mailbox?.subject).to.contain('Postdrop - Verify Account');
@@ -205,7 +207,7 @@ run();
     - `maxWaitTime` (Optional): The maximum time to wait for messages (in milliseconds).
     - `waitInterval` (Optional): The interval between polling attempts (in milliseconds).
     - `logPolling` (Optional): Whether to log each polling attempt for debugging purposes.
-    - `deleteAfterRead` (Optional): Whether to delete messages after reading
+    - `deleteAfterRead` (Optional): Whether to delete messages after reading (default: true)
 - **Returns**: A promise that resolves to the message content (or `null` if no messages are found).
 
 ```json

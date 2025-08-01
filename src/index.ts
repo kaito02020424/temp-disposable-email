@@ -35,6 +35,7 @@ export interface GetEmailOptions {
   waitInterval?: number;
   logPolling?: boolean;
   deleteAfterRead?: boolean;
+  deleteAccount?: boolean;
 }
 
 export const delay = (ms: number): Promise<void> =>
@@ -158,7 +159,7 @@ export const getRecentEmail = async (
       if (deleteAfterRead) {
         await deleteMessage(messageId);
       }
-      await deleteAccount(accountId);
+      if (options.deleteAccount === undefined || options.deleteAccount) await deleteAccount(accountId);
 
       return {
         from: from,
@@ -180,7 +181,7 @@ export const getRecentEmail = async (
       maxWaitTime / 1000
     } seconds reached. No messages found.`
   );
-  await deleteAccount(accountId);
+  if (options.deleteAccount === undefined || options.deleteAccount) await deleteAccount(accountId);
 
   throw new Error(
     `No messages available within ${maxWaitTime / 1000} seconds timeout`

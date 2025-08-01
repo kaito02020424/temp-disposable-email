@@ -28,6 +28,7 @@ describe('DEMO', () => {
           waitInterval: 1000,
           deleteAfterRead: true,
           logPolling: true,
+          deleteAccount: true,
         }).then((mailbox) => {
           // Assert email subject and content
           expect(mailbox?.subject).to.contain('Postdrop - Verify Account');
@@ -60,6 +61,7 @@ describe('DEMO', () => {
           waitInterval: 1000,
           deleteAfterRead: true,
           logPolling: true,
+          deleteAccount: true,
         })
       ).then((mailbox) => {
         const messageContent = mailbox as MessageContent;

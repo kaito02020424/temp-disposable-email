@@ -58,6 +58,7 @@ test.describe('DEMO', () => {
       waitInterval: 1000,
       deleteAfterRead: true,
       logPolling: true,
+      deleteAccount: true,
     });
     const verificationCode = await getVerificationCode(mailbox?.html[0]);
 
@@ -109,6 +110,7 @@ test.describe('DEMO', () => {
       waitInterval: 1000,
       deleteAfterRead: true,
       logPolling: true,
+      deleteAccount: true,
     });
 
     // Assert email subject and content
