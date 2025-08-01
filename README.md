@@ -196,6 +196,7 @@ run();
 {
   emailAddress: string;
   accountId: string;
+  password: string;
 }
 ```
 
